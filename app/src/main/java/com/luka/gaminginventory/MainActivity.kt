@@ -70,6 +70,9 @@ fun Greeting(modifier: Modifier = Modifier, ) {
         Game("Super Mario Odyssey", 45.00, "Nintendo Switch", "Used - good condition"),
         Game("FIFA 23", 10.00, "Playstation", "Used - acceptable")
     ) }
+
+    //Displays
+
     val displays = remember { mutableStateListOf(
         Display("LG", 340.00, "Television", "VA", 2160, 60, "Good"),
         Display("Samsung", 699.99, "Gaming Monitor", "OLED", 1440, 240, "Excellent"),
@@ -82,11 +85,15 @@ fun Greeting(modifier: Modifier = Modifier, ) {
 
     ) }
 
-    var currentScreen by remember { mutableStateOf(4)}
+    var currentScreen by remember { mutableStateOf(0)}
+
+    //Game Variables
 
     var gameName by remember { mutableStateOf("") }
     var gamePrice by remember { mutableStateOf("") }
     var gamePlatform by remember {mutableStateOf("")}
+
+    //Display Variables
 
     var displayBrand by remember {mutableStateOf("")}
     var displayPrice by remember { mutableStateOf("") }
@@ -155,6 +162,9 @@ fun Greeting(modifier: Modifier = Modifier, ) {
                 }
             }
         }
+
+
+        //Game Screen
 
         1->{
             LazyColumn(
@@ -239,6 +249,8 @@ fun Greeting(modifier: Modifier = Modifier, ) {
 
 
 
+        //Add game
+
         2 ->{
             Column(
                 modifier = modifier.fillMaxSize() ,
@@ -294,6 +306,11 @@ fun Greeting(modifier: Modifier = Modifier, ) {
 
             }
         }
+
+
+
+
+        //Show Displays
 
         3 ->{
             LazyColumn(
@@ -399,6 +416,12 @@ fun Greeting(modifier: Modifier = Modifier, ) {
             }
 
         }
+
+
+
+
+
+        // Add Display
         4 ->{
             Column(
                 modifier = modifier.fillMaxSize() ,
@@ -459,7 +482,7 @@ fun Greeting(modifier: Modifier = Modifier, ) {
                         val displayPriceDouble = displayPrice.toDoubleOrNull() ?: 0.0
                         val displayResolutionDouble = displayResolution.toIntOrNull() ?: 0
                         val displayRefreshRateDouble = displayRefreshRate.toIntOrNull() ?: 0
-                        displays.add(Display(displayBrand, displayPriceDouble, displayType, displayPanel, displayResolutionDouble, displayRefreshRateDouble, displayCondition))
+                        displays.add(Display(displayBrand,displayPriceDouble,displayType,displayPanel,displayResolutionDouble,displayRefreshRateDouble,displayCondition))
 
                         displayBrand = ""
                         displayPrice = ""
