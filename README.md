@@ -3,7 +3,7 @@
 Meine vierte Android-App! Dieses Projekt ist ein mächtiges Upgrade zu meinen vorherigen Apps. 
 Hier ging es darum zwischen verschiedenen Screens zu navigieren und Nutzereingaben sicher zu verarbeiten.
 
-Direkt zum Code 👉 
+Direkt zum Code 👉 https://github.com/LukaVogt/GamingInventory/blob/master/app/src/main/java/com/luka/gaminginventory/MainActivity.kt
 
 ## 🚀 Was das Projekt kann:
 * **Zwei Kategorien:** Verwaltung von Spiele-Sammlungen (`Game`) und Bildschirmen/TVs (`Display`).
