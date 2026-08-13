@@ -108,59 +108,10 @@ fun Greeting(modifier: Modifier = Modifier, ) {
         // Homescreen
 
         0 ->{
-            Column(
-                modifier = modifier.fillMaxSize() ,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                Text(
-                    text = "Inventory",
-                    fontSize = 45.sp
-                )
-
-                Spacer(modifier = Modifier.height(50.dp))
-
-                Text(
-                    text = "Please Select",
-                    fontSize = 35.sp
-                )
-
-                Spacer(modifier = Modifier.height(70.dp))
-
-                Button(
-                    onClick = {
-                        currentScreen = 1
-
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(250.dp)
-                ) {
-                    Text(
-                        text = "Games",
-                        fontSize = 35.sp
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(70.dp))
-
-                Button(
-                    onClick = {
-                        currentScreen = 3
-
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(250.dp)
-                ) {
-                    Text(
-                        text = "TVs/Monitors",
-                        fontSize = 30.sp
-                    )
-                }
-            }
+            HomeScreen(
+                onNavigateToGames = { currentScreen = 1 },
+                onNavigateToTVs = { currentScreen = 3 }
+            )
         }
 
 
