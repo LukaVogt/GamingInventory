@@ -117,84 +117,13 @@ fun Greeting(modifier: Modifier = Modifier, ) {
 
         //Game Screen
 
-        1->{
-            LazyColumn(
-                modifier = modifier.fillMaxSize() ,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                items(games) {game ->
-                    
-                    Spacer(modifier = Modifier.height(40.dp))
-                    
-                    Text(
-                        text = "${game.title} ",
-                        fontSize = 25.sp
-                    )
-                    
-                    Spacer(modifier = Modifier.height(10.dp))
-                    
-                    Text(
-                        text = "${game.platform}",
-                        fontSize = 20.sp
-                    )
-                    
-                    Spacer(modifier = Modifier.height(10.dp))
-                    
-                    Text(
-                        text = "${game.price}€",
-                        fontSize = 20.sp
-                    )
-                    Button(
-                        onClick = {
-                            games.remove(game)
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
-
-                    ) {
-                        Text(
-                            text = "Remove"
-                        )
-                    }
-                }
-
-                item {
-                    Spacer(modifier = Modifier.height(60.dp))
-                    Button(
-                        onClick = {
-                            currentScreen = 2
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                        modifier = Modifier
-                            .height(75.dp)
-                            .width(150.dp)
-                    ) {
-                        Text(
-                            text = "Add",
-                            fontSize = 25.sp
-                        )
-                    }
-                }
-                
-                item {
-                    Spacer(modifier = Modifier.height(60.dp))
-                    Button(
-                        onClick = {
-                            currentScreen = 0
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-                        modifier = Modifier
-                            .height(75.dp)
-                            .width(150.dp)
-                    ) { 
-                        Text(
-                            text = "Back",
-                            fontSize = 25.sp
-                        )
-                    }
-                }
-
-            }
+        1-> {
+            GamesScreen(
+                gamesList = games,
+                onRemoveGame = { game -> games.remove(game) },
+                onNavigateToAddGame = { currentScreen = 2 },
+                onNavigateBack = { currentScreen = 0 }
+            )
 
         }
 
@@ -264,107 +193,12 @@ fun Greeting(modifier: Modifier = Modifier, ) {
         //Show Displays
 
         3 ->{
-            LazyColumn(
-                modifier = modifier.fillMaxSize() ,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-                items(displays) {display ->
-
-                    Spacer(modifier = Modifier.height(40.dp))
-
-                    Text(
-                        text = "${display.brand} ",
-                        fontSize = 40.sp
-                    )
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "${display.price}€",
-                        fontSize = 30.sp
-                    )
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "${display.type}",
-                        fontSize = 20.sp
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "${display.panel} ",
-                        fontSize = 25.sp
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "${display.refreshRate} hz ",
-                        fontSize = 25.sp
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "${display.resolution}p ",
-                        fontSize = 25.sp
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    Text(
-                        text = "Condition: ${display.condition} ",
-                        fontSize = 25.sp
-                    )
-                    Button(
-                        onClick = {
-                            displays.remove(display)
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
-
-                        ) {
-                        Text(
-                            text = "Remove"
-                        )
-                    }
-                }
-
-                item {
-                    Spacer(modifier = Modifier.height(60.dp))
-                    Button(
-                        onClick = {
-                            currentScreen = 4
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                        modifier = Modifier
-                            .height(75.dp)
-                            .width(150.dp)
-                    ) {
-                        Text(
-                            text = "Add",
-                            fontSize = 25.sp
-                        )
-                    }
-                }
-
-                item {
-                    Spacer(modifier = Modifier.height(60.dp))
-                    Button(
-                        onClick = {
-                            currentScreen = 0
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
-                        modifier = Modifier
-                            .height(75.dp)
-                            .width(150.dp)
-                    ) {
-                        Text(
-                            text = "Back",
-                            fontSize = 25.sp
-                        )
-                    }
-                }
-
-            }
+            DisplayScreen(
+                displayList = displays,
+                onRemoveDisplay = {display -> displays.remove(display)},
+                onNavigateToAddDisplay = {currentScreen = 4},
+                onNavigateToBack = {currentScreen = 0}
+            )
 
         }
 

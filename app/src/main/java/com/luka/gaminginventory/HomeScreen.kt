@@ -20,6 +20,8 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
+        Spacer(modifier = Modifier.height(50.dp))
+
         Text(
             text = "Inventory",
             fontSize = 45.sp
