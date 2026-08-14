@@ -85,23 +85,7 @@ fun Greeting(modifier: Modifier = Modifier, ) {
 
     ) }
 
-    var currentScreen by remember { mutableStateOf(0)}
-
-    //Game Variables
-
-    var gameName by remember { mutableStateOf("") }
-    var gamePrice by remember { mutableStateOf("") }
-    var gamePlatform by remember {mutableStateOf("")}
-
-    //Display Variables
-
-    var displayBrand by remember {mutableStateOf("")}
-    var displayPrice by remember { mutableStateOf("") }
-    var displayType by remember { mutableStateOf("") }
-    var displayPanel by remember { mutableStateOf("") }
-    var displayResolution by remember { mutableStateOf("") }
-    var displayRefreshRate by remember { mutableStateOf("") }
-    var displayCondition by remember { mutableStateOf("") }
+    var currentScreen by remember { mutableStateOf(2)}
 
     when (currentScreen){
 
@@ -113,10 +97,7 @@ fun Greeting(modifier: Modifier = Modifier, ) {
                 onNavigateToTVs = { currentScreen = 3 }
             )
         }
-
-
         //Game Screen
-
         1-> {
             GamesScreen(
                 gamesList = games,
@@ -126,72 +107,14 @@ fun Greeting(modifier: Modifier = Modifier, ) {
             )
 
         }
-
-
-
         //Add game
-
         2 ->{
-            Column(
-                modifier = modifier.fillMaxSize() ,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Spacer(modifier = Modifier.height(30.dp) )
-                Text(
-                    text = "Customize Game",
-                    fontSize = 30.sp
-                )
-                Spacer(modifier = Modifier.height(30.dp) )
-                OutlinedTextField(
-                    value = gameName,
-                    onValueChange = {gameName = it},
-                    label = { Text("Name") }
-                )
-                Spacer(modifier = Modifier.height(30.dp) )
-                OutlinedTextField(
-                    value = gamePrice,
-                    onValueChange = {gamePrice = it},
-                    label = { Text("Price") }
-                )
-                Spacer(modifier = Modifier.height(30.dp) )
-                OutlinedTextField(
-                    value = gamePlatform,
-                    onValueChange = {gamePlatform = it},
-                    label = { Text("Platform") }
-                )
-                Spacer(modifier = Modifier.height(30.dp) )
-
-                Button(
-                    onClick = {
-                        val priceDouble = gamePrice.toDoubleOrNull() ?: 0.0
-                        games.add(Game(gameName, priceDouble, gamePlatform, "New"))
-
-                        gameName = ""
-                        gamePrice = ""
-                        gamePlatform = ""
-                        currentScreen = 1
-
-
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                    modifier = Modifier
-                        .height(75.dp)
-                        .width(150.dp)
-                ) {
-                    Text(
-                        text = "Add Game",
-                        fontSize = 20.sp
-                    )
-                }
-
-            }
+            AddGamesScreen(
+                onAddGame = {game -> games.add(game)},
+                onNavigateToBack = {currentScreen = 1}
+            )
         }
-
-
-
-
         //Show Displays
-
         3 ->{
             DisplayScreen(
                 displayList = displays,
@@ -201,97 +124,13 @@ fun Greeting(modifier: Modifier = Modifier, ) {
             )
 
         }
-
-
-
-
-
         // Add Display
         4 ->{
-            Column(
-                modifier = modifier.fillMaxSize() ,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
-                Spacer(modifier = Modifier.height(20.dp) )
-                Text(
-                    text = "Customize the Display",
-                    fontSize = 30.sp
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayBrand,
-                    onValueChange = {displayBrand = it},
-                    label = { Text("Brand") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayPrice,
-                    onValueChange = {displayPrice = it},
-                    label = { Text("Price") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayType,
-                    onValueChange = {displayType = it},
-                    label = { Text("Type(Monitor or TV)") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayPanel,
-                    onValueChange = {displayPanel = it},
-                    label = { Text("Panel") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayResolution,
-                    onValueChange = {displayResolution = it},
-                    label = { Text("Resolution") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayRefreshRate,
-                    onValueChange = {displayRefreshRate = it},
-                    label = { Text("Refreshrate in hz") }
-                )
-                Spacer(modifier = Modifier.height(15.dp) )
-                OutlinedTextField(
-                    value = displayCondition,
-                    onValueChange = {displayCondition = it},
-                    label = { Text("Condition") }
-                )
+            AddDisplayScreen(
+                onAddDisplay = {display -> displays.add(display)},
+                onNavigateToBack = {currentScreen =3}
 
-                Spacer(modifier = Modifier.height(15.dp) )
-
-                Button(
-                    onClick = {
-                        val displayPriceDouble = displayPrice.toDoubleOrNull() ?: 0.0
-                        val displayResolutionDouble = displayResolution.toIntOrNull() ?: 0
-                        val displayRefreshRateDouble = displayRefreshRate.toIntOrNull() ?: 0
-                        displays.add(Display(displayBrand,displayPriceDouble,displayType,displayPanel,displayResolutionDouble,displayRefreshRateDouble,displayCondition))
-
-                        displayBrand = ""
-                        displayPrice = ""
-                        displayType = ""
-                        displayPanel = ""
-                        displayResolution = ""
-                        displayRefreshRate = ""
-                        displayCondition = ""
-                        currentScreen = 3
-
-
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                    modifier = Modifier
-                        .height(75.dp)
-                        .width(170.dp)
-                ) {
-                    Text(
-                        text = "Add Display",
-                        fontSize = 20.sp
-                    )
-                }
-
-            }
+            )
         }
 
     }
